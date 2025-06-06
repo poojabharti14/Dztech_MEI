@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "8345870a-3e73-488d-ab65-4aaed52cb7f9"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -23,8 +26,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+               "src/assets",
+               "src/favicon.ico",
+               "src/web.config"
             ],
             "styles": [
               "src/styles.css"

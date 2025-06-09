@@ -1,0 +1,57 @@
+name: Build and Deploy to IIS via FTP
+
+on:
+  push:
+    branches:
+      -  main 
+jobs:
+  build-deploy:
+    runs-on: windows-latest
+
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}         # ✅ SET THIS SECRET
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}     # ✅ SET THIS SECRET
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}     # ✅ SET THIS SECRET
+      FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }} # ✅ SET THIS SECRET (e.g., '/site/wwwroot/')
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version:  122.16.0  #  Node version (e.g., 16)
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version:  '8.0.410'  # .NET 7, 8, etc.
+
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+
+    - name: Install Client Dependencies
+      working-directory: ./Client  # ✅ CHANGE if your Angular folder has a different name
+      run: npm install
+
+    - name: Build Angular App
+      working-directory:  ./Client  # ✅ Same as above
+      run: ng build --configuration production
+
+    - name: Restore .NET Dependencies
+      run: dotnet restore
+
+    - name: Publish .NET Project
+      run: dotnet publish -c Release -o ./publish
+      # ✅ CHANGE if your .csproj file is inside a folder:
+      # Example: dotnet publish ./YourProjectFolder/YourApp.csproj -c Release -o ./publish
+
+    - name: FTP Deploy to IIS
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ env.FTP_SERVER }}
+        username: ${{ env.FTP_USERNAME }}
+        password: ${{ env.FTP_PASSWORD }}
+        local-dir: ./publish
+        server-dir: ${{ env.FTP_REMOTE_DIR }}  # ✅ This should point to the folder on your IIS server (e.g., '/wwwroot/')

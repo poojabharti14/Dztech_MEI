@@ -12,7 +12,7 @@ jobs:
       FTP_SERVER:     169.254.81.118    # ✅ SET THIS SECRET
       FTP_USERNAME: pooja     # ✅ SET THIS SECRET
       FTP_PASSWORD: Brijradha@23     # ✅ SET THIS SECRET
-      FTP_REMOTE_DIR: C:\Users\Anuroshan\FTPServer\publish # ✅ SET THIS SECRET (e.g., '/site/wwwroot/')
+      FTP_REMOTE_DIR: C:/Users/Anuroshan/FTPServer/publish/ # ✅ SET THIS SECRET (e.g., '/site/wwwroot/')
 
     steps:
     - name: Checkout Code

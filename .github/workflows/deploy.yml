@@ -45,7 +45,7 @@ jobs:
     - name: Publish .NET Project
       run: dotnet publish -c Release -o ./publish
       # ✅ CHANGE if your .csproj file is inside a folder:
-      # Example: dotnet publish ./YourProjectFolder/YourApp.csproj -c Release -o ./publish
+      # Example: dotnet publish ./YourProjectFolder/YourApp.csproj -c Release -o ./publish  
 
     - name: FTP Deploy to IIS
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4

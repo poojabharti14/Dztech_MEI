@@ -1,0 +1,70 @@
+# name: CI Pipeline
+ 
+# on:
+#   pull_request:
+#     branches: [ develop, main ]
+ 
+# jobs:
+#   build-and-test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Install dependencies
+#         run: npm install
+#       - name: Run tests
+#         run: npm test
+#       - name: Lint code
+#         run: npm run lint
+name: CI Build Only
+ 
+on:
+  push:
+    branches:
+      - develop  # Or your working branch
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+ 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+ 
+      - name: Install Angular dependencies
+        working-directory: ClientApp
+        run: |
+          npm install
+ 
+      - name: Build Angular
+        working-directory: ClientApp
+        run: |
+          npm run build --configuration=staging-2
+ 
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.x'  # or whatever version you use
+ 
+      - name: Build .NET backend
+        working-directory: ServerApp
+        run: |
+          dotnet publish -c Staging -o ./bin/Staging2/publish
+ 
+      - name: Commit and Push to release branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+         
+          git checkout -b release/build-artifacts || git checkout release/build-artifacts
+          cp -r ClientApp/dist/staging-2 ./ClientAppBuild
+          cp -r ServerApp/bin/Staging2/publish ./ServerAppBuild
+         
+          git add ClientAppBuild ServerAppBuild
+          git commit -m "Automated build output on $(date)"
+          git push origin HEAD:release/build-artifacts --force
+ 

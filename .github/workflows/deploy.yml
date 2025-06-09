@@ -53,5 +53,5 @@ jobs:
         server: ${{ env.FTP_SERVER }}
         username: ${{ env.FTP_USERNAME }}
         password: ${{ env.FTP_PASSWORD }}
-        local-dir: ./publish
+        local-dir: ./publish/
         server-dir: ${{ env.FTP_REMOTE_DIR }}  # ✅ This should point to the folder on your IIS server (e.g., '/wwwroot/')

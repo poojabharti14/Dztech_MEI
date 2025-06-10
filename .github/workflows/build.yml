@@ -7,24 +7,21 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: self-hosted  # Your local machine
+    runs-on: self-hosted  # Runs on your local IIS machine
 
     steps:
     - name: 📥 Checkout Code
       uses: actions/checkout@v4
 
-    # Only keep setup steps if tools are NOT already installed
-    # Remove this if Node.js is already installed
-    # - name: 🔧 Setup Node.js
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version: 20
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
 
-    # Remove this if .NET is already installed
-    # - name: 🔧 Setup .NET SDK
-    #   uses: actions/setup-dotnet@v4
-    #   with:
-    #     dotnet-version: '5.0.x'
+    - name: 🔧 Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '5.0.x'
 
     - name: 📦 Install Angular CLI
       run: npm install -g @angular/cli
@@ -38,15 +35,10 @@ jobs:
       run: ng build --configuration production
 
     - name: 🛠️ Build .NET App
-      run: dotnet publish -c Release -o ./publish
+      run: dotnet publish -c Release -o "C:\Users\Anuroshan\angular_aspnet\AngularCLI-ASPNET-Core-CustomersService\publish"
 
-    - name: 🚚 Copy Build Files to IIS
-      run: |
-        robocopy ./publish "C:\Users\Anuroshan\angular_aspnet\AngularCLI-ASPNET-Core-CustomersService\publish" /MIR
-      shell: powershell
-
-    - name: 🔁 Restart IIS App Pool
-      run: |
-        Import-Module WebAdministration
-        Restart-WebAppPool -Name "test"
-      shell: powershell
+    # - name: 🔁 Restart IIS App Pool
+    #   run: |
+    #     Import-Module WebAdministration
+    #     Restart-WebAppPool -Name "test"
+    #   shell: powershell

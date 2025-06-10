@@ -8,7 +8,7 @@
   <br />
   <form [formGroup]="customerForm" (ngSubmit)="submit(customerForm)" class="editForm" novalidate>
     <div class="form-group">
-      <label>First Name new</label>
+      <label>First Name</label>
       <input type="text" class="form-control" formControlName="firstName" title="First Name" />
       <div class="alert alert-danger" [hidden]="f['firstName'].untouched || f['firstName'].valid">First Name is required</div>
     </div>
@@ -18,7 +18,7 @@
       <div class="alert alert-danger" [hidden]="f['lastName'].untouched || f['lastName'].valid">Last Name is required</div>
     </div>
     <div class="form-group">
-      <label>Gender NEW</label>
+      <label>Gender </label>
       <br />
       <div class="radio">
         <label>

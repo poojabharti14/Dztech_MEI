@@ -52,6 +52,6 @@ jobs:
       with:
         server: 169.254.81.118
         username: pooja
-        password: Brijradha
+        password: Brijradha@23
         local-dir: ./publish/
         server-dir: C:/Users/Anuroshan/FTPServer/publish/  # ✅ This should point to the folder on your IIS server (e.g., '/wwwroot/')

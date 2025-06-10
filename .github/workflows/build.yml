@@ -13,15 +13,15 @@ jobs:
     - name: 📥 Checkout Code
       uses: actions/checkout@v4
 
-    - name: 🔧 Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+    # - name: 🔧 Setup Node.js
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: 20
 
-    - name: 🔧 Setup .NET SDK
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '5.0.x'
+    # - name: 🔧 Setup .NET SDK
+    #   uses: actions/setup-dotnet@v4
+    #   with:
+    #     dotnet-version: '5.0.x'
 
     - name: 📦 Install Angular CLI
       run: npm install -g @angular/cli

@@ -9,7 +9,7 @@
   <form [formGroup]="customerForm" (ngSubmit)="submit(customerForm)" class="editForm" novalidate>
     <div class="form-group">
       <label>First Name of user</label>
-      <input type="text" class="form-control" formControlName="firstName" title="First Name" />
+      <input type="text" class="form-control" formControlName="firstName" title="First Name of user" />
       <div class="alert alert-danger" [hidden]="f['firstName'].untouched || f['firstName'].valid">First Name is required</div>
     </div>
     <div class="form-group">

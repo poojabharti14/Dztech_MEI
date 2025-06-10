@@ -50,8 +50,8 @@ jobs:
     - name: FTP Deploy to IIS
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ${{ env.FTP_SERVER }}
-        username: ${{ env.FTP_USERNAME }}
-        password: ${{ env.FTP_PASSWORD }}
+        server: 169.254.81.118
+        username: pooja
+        password: Brijradha
         local-dir: ./publish/
-        server-dir: ${{ env.FTP_REMOTE_DIR }}  # ✅ This should point to the folder on your IIS server (e.g., '/wwwroot/')
+        server-dir: C:/Users/Anuroshan/FTPServer/publish/  # ✅ This should point to the folder on your IIS server (e.g., '/wwwroot/')

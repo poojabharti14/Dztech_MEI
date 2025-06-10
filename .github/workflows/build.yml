@@ -7,21 +7,24 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: self-hosted  # It will run on your local IIS server
+    runs-on: self-hosted  # Your local machine
 
     steps:
     - name: 📥 Checkout Code
       uses: actions/checkout@v4
 
-    - name: 🔧 Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+    # Only keep setup steps if tools are NOT already installed
+    # Remove this if Node.js is already installed
+    # - name: 🔧 Setup Node.js
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: 20
 
-    - name: 🔧 Setup .NET SDK
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
+    # Remove this if .NET is already installed
+    # - name: 🔧 Setup .NET SDK
+    #   uses: actions/setup-dotnet@v4
+    #   with:
+    #     dotnet-version: '5.0.x'
 
     - name: 📦 Install Angular CLI
       run: npm install -g @angular/cli

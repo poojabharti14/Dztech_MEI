@@ -37,6 +37,10 @@ jobs:
     - name: ⛔ Stop IIS App Pool
       run: |
         Import-Module WebAdministration
+<<<<<<< HEAD
+=======
+        Set-Location IIS:\AppPools
+>>>>>>> ba0b08e714d166a6db8b3ebf5a1637cad46e18c4
         Stop-WebAppPool -Name "test"
       shell: powershell
 

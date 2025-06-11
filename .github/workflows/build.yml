@@ -34,8 +34,8 @@ jobs:
       working-directory: ./Client
       run: ng build --configuration production
 
-    # - name: 🛠️ Build .NET App
-    #   run: dotnet publish -c Release -o "C:\Users\Anuroshan\angular_aspnet\AngularCLI-ASPNET-Core-CustomersService\publish"
+     #- name: 🛠️ Build .NET App
+      # run: dotnet publish -c Release -o "C:\Users\Anuroshan\angular_aspnet\AngularCLI-ASPNET-Core-CustomersService\publish"
 
     - name: 🛠️ Build .NET App
       run: dotnet publish -c Release -o ./publish

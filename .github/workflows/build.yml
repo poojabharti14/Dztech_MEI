@@ -38,7 +38,7 @@ jobs:
     - name: ⛔ Stop IIS App Pool
       run: |
         Import-Module WebAdministration
-        Stop-WebAppPool -Name "test"
+        Stop-WebAppPool -Name "WIN\Sites\test"
       shell: powershell
 
     - name: 🛠️ Build .NET App

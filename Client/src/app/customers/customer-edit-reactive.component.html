@@ -8,17 +8,17 @@
   <br />
   <form [formGroup]="customerForm" (ngSubmit)="submit(customerForm)" class="editForm" novalidate>
     <div class="form-group">
-      <label>First Name new</label>
-      <input type="text" class="form-control" formControlName="firstName" title="First Name of user" />
+      <label>First Name</label>
+      <input type="text" class="form-control" formControlName="firstName" title="First Name" />
       <div class="alert alert-danger" [hidden]="f['firstName'].untouched || f['firstName'].valid">First Name is required</div>
     </div>
     <div class="form-group">
       <label>Last Name</label>
-      <input type="text" class="form-control" formControlName="lastName" title="Last Name new">
+      <input type="text" class="form-control" formControlName="lastName" title="Last Name">
       <div class="alert alert-danger" [hidden]="f['lastName'].untouched || f['lastName'].valid">Last Name is required</div>
     </div>
     <div class="form-group">
-      <label>Gender </label>
+      <label>Gender  </label>
       <br />
       <div class="radio">
         <label>
@@ -30,6 +30,12 @@
         <label>
           <input type="radio" name="gender" formControlName="gender" value="Female"  /> 
           Female
+        </label>
+      </div>
+            <div class="radio">
+        <label>
+          <input type="radio" name="gender" formControlName="gender" value="Female"  /> 
+          sahil(others)
         </label>
       </div>
     </div>

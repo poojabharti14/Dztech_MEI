@@ -7,8 +7,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: windows-latest
- # Runs on your local IIS machine
+    runs-on: windows-latest # Runs on your local IIS machine
 
     steps:
     - name: 📥 Checkout Code
@@ -22,7 +21,7 @@ jobs:
     # - name: 🔧 Setup .NET SDK
     #   uses: actions/setup-dotnet@v4
     #   with:
-    #     dotnet-version: '5.0.x' 
+    #     dotnet-version: '5.0.x'
 
     - name: 📦 Install Angular CLI
       run: npm install -g @angular/cli
@@ -38,7 +37,7 @@ jobs:
     - name: ⛔ Stop IIS App Pool
       run: |
         Import-Module WebAdministration
-        Stop-WebAppPool -Name "WIN\Sites\test"
+        Stop-WebAppPool -Name "test"
       shell: powershell
 
     - name: 🛠️ Build .NET App

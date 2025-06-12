@@ -7,7 +7,7 @@ on:
  
 jobs:
   build-deploy:
-    runs-on: self-hosted # Runs on your local IIS machine
+    runs-on: ubuntu-latest # Runs on your local IIS machine
  
     steps:
     - name: 📥 Checkout Code
